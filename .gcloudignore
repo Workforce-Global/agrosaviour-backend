@@ -1,7 +1,14 @@
+# Ignore version control and metadata files
 .git
 .gitignore
-README.md
-*.pyc
+.gcloudignore
+
+# Ignore build cache
 __pycache__/
-.env
+*.pyc
+*.pyo
+
+# Ignore system files
 .DS_Store
+.env
+*.env
