@@ -1,4 +1,4 @@
-# 🌾 Crop Disease Detection Backend (FastAPI)
+# 🌾 AgroSaviour Backend (FastAPI)
 
 This backend API performs image classification to detect diseases in crops commonly grown in Ghana — including **cassava**, **maize**, **tomato**, and **cashew** — using pre-trained PyTorch models (EfficientNet and MobileNet).
 
