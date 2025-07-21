@@ -1,0 +1,10 @@
+steps:
+  - name: 'python'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        pip install -r requirements.txt
+        python -m uvicorn main:app --host=0.0.0.0 --port=$PORT
+
+timeout: 900s
