@@ -4,3 +4,4 @@ torch
 torchvision
 pillow
 firebase-admin
+python-multipart
