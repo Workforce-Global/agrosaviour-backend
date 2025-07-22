@@ -1,23 +1,32 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import firebase_admin
-from inference.predictor import predict
-import os
-import uvicorn
-import os, json, base64
 from firebase_admin import credentials, initialize_app
+from inference.predictor import predict
 from dotenv import load_dotenv
+import os, json, base64, uvicorn
+
 load_dotenv()
 
-# Only initialize once
+# Firebase Admin Initialization
 if not len(firebase_admin._apps):
     b64_creds = os.environ["FIREBASE_ADMIN_CREDENTIALS_B64"]
     json_creds = json.loads(base64.b64decode(b64_creds).decode())
     cred = credentials.Certificate(json_creds)
     initialize_app(cred)
 
-
 app = FastAPI(title="Crop Disease Detection API")
+
+# ✅ CORS Setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with actual frontend domain in prod
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.post("/predict/")
 async def predict_crop_disease(
