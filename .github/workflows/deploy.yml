@@ -9,6 +9,7 @@ env:
   SERVICE_NAME: agrosaviour-backend
   REGION: europe-west1
   IMAGE: gcr.io/agrosaviour-466619/agrosaviour-backend
+  FIREBASE_ADMIN_CREDENTIALS_B64: ${{ secrets.FIREBASE_ADMIN_CREDENTIALS_B64 }}
 
 jobs:
   deploy:
