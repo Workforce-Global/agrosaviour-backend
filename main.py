@@ -3,6 +3,17 @@ from PIL import Image
 from inference.predictor import predict
 import os
 import uvicorn
+import os, json, base64
+from firebase_admin import credentials, initialize_app
+from dotenv import load_dotenv
+load_dotenv()
+
+# Only initialize once
+if not len(firebase_admin._apps):
+    b64_creds = os.environ["FIREBASE_ADMIN_CREDENTIALS_B64"]
+    json_creds = json.loads(base64.b64decode(b64_creds).decode())
+    cred = credentials.Certificate(json_creds)
+    initialize_app(cred)
 
 
 app = FastAPI(title="Crop Disease Detection API")
