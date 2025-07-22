@@ -2,15 +2,13 @@ name: Deploy to Cloud Run
 
 on:
   push:
-    branches: [main] # or your deployment branch
+    branches: [main]
 
 env:
   PROJECT_ID: agrosaviour-466619
   SERVICE_NAME: agrosaviour-backend
   REGION: europe-west1
   IMAGE: gcr.io/agrosaviour-466619/agrosaviour-backend
-  FIREBASE_ADMIN_CREDENTIALS_B64: ${{ secrets.FIREBASE_ADMIN_CREDENTIALS_B64 }}
-  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
 jobs:
   deploy:
@@ -46,4 +44,5 @@ jobs:
             --region $REGION \
             --allow-unauthenticated \
             --memory 1Gi \
-            --port 8080
+            --port 8080 \
+            --set-env-vars FIREBASE_ADMIN_CREDENTIALS_B64=${{ secrets.FIREBASE_ADMIN_CREDENTIALS_B64 }}

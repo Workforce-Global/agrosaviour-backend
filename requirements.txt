@@ -6,3 +6,12 @@ pillow
 firebase-admin
 python-multipart
 dotenv
+python-dotenv
+google-cloud-storage
+google-cloud-firestore
+google-cloud-secret-manager
+google-cloud-pubsub
+google-cloud-logging
+google-cloud-translate
+google-cloud-vision
+pillow

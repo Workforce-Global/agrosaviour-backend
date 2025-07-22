@@ -4,6 +4,9 @@ FROM python:3.11-slim
 # Set the working directory inside the container to the root
 WORKDIR /code
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y build-essential libgl1-mesa-glx
+
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -16,10 +19,6 @@ EXPOSE 8080
 
 # Set environment variable
 ENV PORT=8080
-
-# Write secrets to .env file
-RUN echo "FIREBASE_ADMIN_CREDENTIALS_B64=${FIREBASE_ADMIN_CREDENTIALS_B64}" > .env
-RUN echo "GCP_SA_KEY=${GCP_SA_KEY}" >> .env
 
 # Start the FastAPI server
 CMD ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8080"]
