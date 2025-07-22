@@ -36,6 +36,8 @@ async def predict_crop_disease(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+#Updated Section for GCP usage
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
