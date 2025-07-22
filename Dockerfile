@@ -17,5 +17,9 @@ EXPOSE 8080
 # Set environment variable
 ENV PORT=8080
 
+# Write secrets to .env file
+RUN echo "FIREBASE_ADMIN_CREDENTIALS_B64=${FIREBASE_ADMIN_CREDENTIALS_B64}" > .env
+RUN echo "GCP_SA_KEY=${GCP_SA_KEY}" >> .env
+
 # Start the FastAPI server
 CMD ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8080"]

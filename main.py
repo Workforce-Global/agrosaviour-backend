@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from PIL import Image
+import firebase_admin
 from inference.predictor import predict
 import os
 import uvicorn
