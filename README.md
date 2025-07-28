@@ -9,7 +9,7 @@ It is designed to integrate seamlessly with a Firebase-based frontend, such as F
 ## ✅ Features
 
 - ✅ Upload crop images for instant disease detection  
-- ✅ Supports two models: `efficientnet` (accurate) and `mobilenet` (lightweight)  
+- ✅ Supports one model: `efficientnet` 
 - ✅ Preprocessing pipeline to ensure clean predictions  
 - 🔜 Optional Firebase authentication token support  
 - 🔜 History logging and analytics  
@@ -25,7 +25,6 @@ It is designed to integrate seamlessly with a Firebase-based frontend, such as F
 │ └── models/
 │ ├── loader.py # Loads the selected PyTorch model
 │ └── best_efficientnetb4.pth
-│ └── best_mobilenetv3.pth
 ├── utils/
 │ ├── image_preprocessing.py # Image resizing, conversion, normalization
 │ └── class_map.py # Class ID to human-readable disease mapping
@@ -36,12 +35,11 @@ It is designed to integrate seamlessly with a Firebase-based frontend, such as F
 
 ---
 
-## 🧠 Supported Models
+## 🧠 Supported Model
 
 | Model Name    | Description                              | Use Case           |
 |---------------|------------------------------------------|--------------------|
 | `efficientnet`| High-accuracy model (EfficientNetB4)     | Default; better for serious diagnostics |
-| `mobilenet`   | Lightweight and fast (MobileNetV3)       | Ideal for mobile and edge deployment   |
 
 ---
 
@@ -67,7 +65,7 @@ POST /predict/
 Upload a crop image and select which model to use for prediction.
 
 Parameters
-Query param: model_name → "efficientnet" (default) or "mobilenet"
+Query param: model_name → "efficientnet"
 
 Form field: file → Image file (JPG, PNG)
 
@@ -92,8 +90,8 @@ curl -X POST https://agrosaviour-backend-947103695812.europe-west1.run.app/predi
   -F "file=@path/to/your/image.jpeg"
 ```
 
-Response Fields:
-model_used: The machine learning model used for prediction (e.g., EfficientNet).
-predicted_class: The internal class ID assigned to the disease.
-label: The human-readable name of the disease.
-confidence: The confidence score for the prediction (range: 0 to 1).
+**Response Fields:**
+**model_used:** The machine learning model used for prediction (e.g., EfficientNet).
+**predicted_class:** The internal class ID assigned to the disease.
+**label:** The human-readable name of the disease.
+**confidence:** The confidence score for the prediction (range: 0 to 1).
