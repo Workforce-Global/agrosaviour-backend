@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 ### 2. Run the server
 ```
-uvicorn main:app --reload
+uvicorn main:app --host=0.0.0.0 --port=8080
 ```
 
 ### API Usage
@@ -71,19 +71,29 @@ Query param: model_name → "efficientnet" (default) or "mobilenet"
 
 Form field: file → Image file (JPG, PNG)
 
+**Method:** `POST`  
+**Content-Type:** `multipart/form-data`
+
 ✅ Response
 ```
 {
-  "model_used": "efficientnet",
-  "result": "Tomato - Bacterial Spot"
+    "model_used": "efficientnet",
+    "result": {
+        "predicted_class": 3,
+        "label": "Fall Armyworm",
+        "confidence": 0.9962
+    }
 }
 ```
-✅ Example using Python
+✅ Example using cURL
 ```
-import requests
+curl -X POST https://agrosaviour-backend-947103695812.europe-west1.run.app/predict/ \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@path/to/your/image.jpeg"
+```
 
-files = {'file': open("your_image.jpg", "rb")}
-data = {'model_name': 'efficientnet'}
-res = requests.post("http://127.0.0.1:8000/predict/", files=files, data=data)
-print(res.json())
-```
+Response Fields:
+model_used: The machine learning model used for prediction (e.g., EfficientNet).
+predicted_class: The internal class ID assigned to the disease.
+label: The human-readable name of the disease.
+confidence: The confidence score for the prediction (range: 0 to 1).
