@@ -17,7 +17,7 @@ It is designed to integrate seamlessly with a Firebase-based frontend, such as F
 ---
 
 ## 📁 Project Structure
-
+```
 .
 ├── main.py # FastAPI app entry point
 ├── inference/
@@ -31,6 +31,7 @@ It is designed to integrate seamlessly with a Firebase-based frontend, such as F
 ├── requirements.txt
 └── README.md
 `
+```
 
 
 ---
@@ -89,9 +90,20 @@ curl -X POST https://agrosaviour-backend-947103695812.europe-west1.run.app/predi
   -H "Content-Type: multipart/form-data" \
   -F "file=@path/to/your/image.jpeg"
 ```
+---
+## Response Fields:
+- **model_used:** The machine learning model used for prediction (e.g., EfficientNet).
+- **predicted_class:** The internal class ID assigned to the disease.
+- **label:** The human-readable name of the disease.
+- **confidence:** The confidence score for the prediction (range: 0 to 1).
+---
 
-**Response Fields:**
-**model_used:** The machine learning model used for prediction (e.g., EfficientNet).
-**predicted_class:** The internal class ID assigned to the disease.
-**label:** The human-readable name of the disease.
-**confidence:** The confidence score for the prediction (range: 0 to 1).
+## 🛠 Technologies Used
+- **Python** – Backend logic and ML inference.
+- **FastAPI** – High-performance web framework used to expose the API.
+- **EfficientNet** – Deep learning model used for disease classification.
+- **Torch / PyTorch** – Framework for loading and running the AI model.
+- **Google Cloud Run** – Serverless infrastructure for hosting the API.
+- **Postman** – For API testing and validation (as shown in the screenshot).
+- **Docker** – For containerizing the backend and deploying to Cloud Run.
+---
